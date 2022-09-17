@@ -15,11 +15,11 @@ class Comics extends BaseController
 
     public function index()
     {
-        $comic = $this->comicModel->findAll();
+        // $comic = $this->comicModel->findAll();
 
         $data = [
             'title' => 'Register Comic',
-            'comic' => $comic
+            'comic' => $this->comicModel->getComic()
         ];
 
         // //method to connect db without model
@@ -28,8 +28,16 @@ class Comics extends BaseController
         // foreach($comic->getResultArray() as $row) {
         //     d($row);
         // }
-
         
         return view('comics/index', $data);
+    }
+
+    public function detail($slug) {
+        
+        $data = [
+           'title' => 'Comic Details',
+           'comic' => $this->comicModel->getComic($slug)
+        ];
+        return view ('comics/detail', $data);
     }
 }
