@@ -30,7 +30,7 @@
       <td><img src="/img/<?= $c['image']; ?>" alt="" class="picture"></td>
       <td><?= $c['title']; ?></td>
       <td>
-        <a href="" class="btn btn-success">Details</a>
+        <a href="/comics/<?= $c['slug']; ?>" class="btn btn-success">Details</a>
       </td>
     </tr>
     <?php 
