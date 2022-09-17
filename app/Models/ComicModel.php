@@ -7,8 +7,9 @@ use CodeIgniter\Model;
 class ComicModel extends Model
 {
     protected $table = 'comic'; //table name in db
-    // protected $primaryKey = 'id'; //default
     protected $useTimestamps = true;
+    //allow field that user can fill in
+    protected $allowedFields = ['title', 'slug', 'author', 'publisher', 'image'];
 
     public function getComic($slug = false)
     {
@@ -16,7 +17,7 @@ class ComicModel extends Model
             return $this->findAll();
         }
 
-        return $this->where(['slug' => $slug]) -> first();
+        return $this->where(['slug' => $slug])->first();
     }
 
 }
