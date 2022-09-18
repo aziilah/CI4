@@ -32,7 +32,7 @@ class AuthorSeeder extends Seeder
         // ];
 
         $faker = \Faker\Factory::create('ja_JP');
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 100; $i++) {
 
             $data = [
                 'name' => $faker->name,
