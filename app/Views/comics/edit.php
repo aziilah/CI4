@@ -5,9 +5,10 @@
     <div class="row">
         <div class="col-8">
             <h2 class="my-3">Data Edit Comic Form</h2>
-            <form action="/comics/update/<?= $comic['id']; ?>" method="post">
+            <form action="/comics/update/<?= $comic['id']; ?>" method="post" enctype="multipart/form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="slug" value="<?= $comic['slug']; ?>">
+                <input type="hidden" name="oldImage" value="<?= $comic['image']; ?>">
   <div class="row mb-3">
     <label for="title" class="col-sm-2 col-form-label">Title</label>
     <div class="col-sm-10">
@@ -31,8 +32,17 @@
   </div>
   <div class="row mb-3">
     <label for="image" class="col-sm-2 col-form-label">Image</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="image" name="image" value="<?= (old('image')) ? old('image') : $comic['image'] ?>">
+    <div class="col-sm-2">
+      <img src="/img/<?= $comic['image']; ?>" class="img-thumbnail img-preview">
+    </div>
+    <div class="col-sm-8">
+    <div class="custom-file">
+      <input class="custom-file-input <?= ($validation->hasError('image')) ? 'is-invalid' : ''; ?>" type="file" id="image" name="image" onchange="previewImg()">
+      <div class="invalid-feedback">
+        <?= $validation->getError('image'); ?>
+      </div>
+      <label for="image" class="custom-file-label"><?= $comic['image']; ?></label>
+</div>
     </div>
   </div>
   
