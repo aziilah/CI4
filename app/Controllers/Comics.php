@@ -68,11 +68,16 @@ class Comics extends BaseController
                     'required' => 'Please provide a comic {field}!',
                     'is_unique' => 'Comic {field} already registered!'
                 ]
-            ]
+                ],
+                
+                 'image' => 'uploaded[image]'
+                
         ])) {
-            $validation = \Config\Services::validation();
-            // dd($validation);
-            return redirect()->to('comics/create')->withInput()->with('validation', $validation);
+            // $validation = \Config\Services::validation();
+            // // dd($validation);
+            // return redirect()->to('comics/create')->withInput()->with('validation', $validation);
+
+            return redirect()->to('/comics/create')->withInput();
         }
 
         $slug = url_title($this->request->getVar('title'), '-', true);
