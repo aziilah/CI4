@@ -30,6 +30,7 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <?= $pager->links('author', 'author_pagination'); ?>
         </div>
     </div>
 </div>
