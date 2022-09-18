@@ -10,25 +10,28 @@
   <div class="row mb-3">
     <label for="title" class="col-sm-2 col-form-label">Title</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="title" name="title" autofocus>
+      <input type="text" class="form-control <?= ($validation->hasError('title')) ? 'is-invalid' : ''; ?>" id="title" name="title" autofocus value="<?= old('title'); ?>">
+      <div id="validationServerUsernameFeedback" class="invalid-feedback">
+        <?= $validation->getError('title'); ?>
+      </div>
     </div>
   </div>
   <div class="row mb-3">
     <label for="author" class="col-sm-2 col-form-label">Author</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="author" name="author">
+      <input type="text" class="form-control" id="author" name="author" value="<?= old('author'); ?>">
     </div>
   </div>
   <div class="row mb-3">
     <label for="publisher" class="col-sm-2 col-form-label">Publisher</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="publisher" name="publisher">
+      <input type="text" class="form-control" id="publisher" name="publisher" value="<?= old('publisher'); ?>">
     </div>
   </div>
   <div class="row mb-3">
     <label for="image" class="col-sm-2 col-form-label">Image</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="image" name="image">
+      <input type="text" class="form-control" id="image" name="image" value="<?= old('image'); ?>">
     </div>
   </div>
   
