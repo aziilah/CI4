@@ -73,9 +73,6 @@ class Comics extends BaseController
                  'image' => 'uploaded[image]'
                 
         ])) {
-            // $validation = \Config\Services::validation();
-            // // dd($validation);
-            // return redirect()->to('comics/create')->withInput()->with('validation', $validation);
 
             return redirect()->to('/comics/create')->withInput();
         }
