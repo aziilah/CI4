@@ -90,9 +90,17 @@ class Comics extends BaseController
         session()->setFlashdata('warning', 'Data has been added!');
 
         //after save, redirect to index
-        return redirect()->to('/comics/index');
+        return redirect()->to('/comics/index');        
+    }
 
-        // return view ('comics/save');
-        
+    public function delete($id) 
+    {
+        $this->comicModel->delete($id);
+
+        //make flash data in index.php
+        session()->setFlashdata('warning', 'Data has been deleted!');
+
+
+        return redirect()->to('/comics/index');
     }
 }
