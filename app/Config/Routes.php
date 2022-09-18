@@ -40,6 +40,8 @@ $routes->get('/pages/about', 'Pages::about');
 $routes->get('/pages/contact', 'Pages::contact');
 $routes->get('/comics/index', 'Comics::index');
 
+$routes->get('/authors/index', 'Authors::index');
+
 $routes->get('/comics/create', 'Comics::create');
 $routes->get('/comics/edit/(:segment)', 'Comics::edit/$1');
 $routes->post('/comics/update/(:num)', 'Comics::update/$1');
