@@ -115,4 +115,49 @@ class Comics extends BaseController
         return view ('comics/edit', $data);
     }
 
+    public function update($id) 
+    {
+      //dd($this->request->getVar());
+
+      //check title and fetch from old data
+      $oldComic = $this->comicModel->getComic($this->request->getVar('slug'));
+      if($oldComic['title'] == $this->request->getVar('title')) {
+        $rule_title = 'required';
+      } else {
+        $rule_title = 'required|is_unique[comic.title]';
+      }
+
+      if(!$this->validate([
+        'title' => [
+            'rules' => $rule_title,
+            'errors' => [
+                'required' => 'Please provide a comic {field}!',
+                'is_unique' => 'Comic {field} already registered!'
+            ]
+        ]
+    ])) {
+        $validation = \Config\Services::validation();
+        // dd($validation);
+        return redirect()->to('comics/edit/' . $this->request->getVar('slug'))->withInput()->with('validation', $validation);
+    }
+
+      $slug = url_title($this->request->getVar('title'), '-', true);
+        //insert to db
+        $this->comicModel->save([
+            'id' => $id,
+            'title' => $this->request->getVar('title'),
+            'slug' => $slug,
+            'author' => $this->request->getVar('author'),
+            'publisher' => $this->request->getVar('publisher'),
+            'image' => $this->request->getVar('image')
+
+        ]);
+
+        //make flash data in index.php
+        session()->setFlashdata('warning', 'Data has been updated!');
+
+        //after save, redirect to index
+        return redirect()->to('/comics/index');   
+    }
+
 }
