@@ -42,6 +42,7 @@ $routes->get('/comics/index', 'Comics::index');
 
 $routes->get('/comics/create', 'Comics::create');
 $routes->get('/comics/edit/(:segment)', 'Comics::edit/$1');
+$routes->post('/comics/update/(:num)', 'Comics::update/$1');
 $routes->post('/comics/save', 'Comics::save');
 $routes->delete('/comics/(:num)', 'Comics::delete/$1');
 
