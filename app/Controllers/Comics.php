@@ -103,4 +103,16 @@ class Comics extends BaseController
 
         return redirect()->to('/comics/index');
     }
+
+    public function edit($slug) 
+    {
+        $data = [
+            'title' => 'Data Comic Edit Form',
+            'validation' => \Config\Services::validation(),
+            'comic' => $this->comicModel->getComic($slug)
+        ];
+
+        return view ('comics/edit', $data);
+    }
+
 }
