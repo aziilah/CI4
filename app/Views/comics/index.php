@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col">
       <a href="/comics/create" class="btn btn-primary mt-3">Add Comic Data</a>
-      <h1 class="mt-2">Register Comic</h1>
+      <h1 class="mt-2">Comic Registration</h1>
       <?php if (session()->getFlashdata('warning')) : ?>
         <div class="alert alert-success" role="alert">
           <?= session()->getFlashdata('warning'); ?>
