@@ -18,7 +18,7 @@ class Comics extends BaseController
         // $comic = $this->comicModel->findAll();
 
         $data = [
-            'title' => 'Register Comic',
+            'title' => 'Comic Registration',
             'comic' => $this->comicModel->getComic()
         ];
 
