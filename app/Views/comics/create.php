@@ -30,7 +30,10 @@
   </div>
   <div class="row mb-3">
     <label for="image" class="col-sm-2 col-form-label">Image</label>
-    <div class="col-sm-10">
+    <div class="col-sm-2">
+      <img src="/img/default.png" class="img-thumbnail img-preview">
+    </div>
+    <div class="col-sm-8">
     <div class="custom-file">
       <input class="custom-file-input <?= ($validation->hasError('image')) ? 'is-invalid' : ''; ?>" type="file" id="image" name="image">
       <div class="invalid-feedback">
