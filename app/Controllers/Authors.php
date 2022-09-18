@@ -19,10 +19,18 @@ class Authors extends BaseController
         //url
         $currentPage = $this->request->getVar('page_author') ? $this->request->getVar('page_author') : 1;
 
+        // d($this->request->getVar('keyword'));
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $author = $this->authorModel->search($keyword);
+        } else {
+            $author = $this->authorModel;
+        }
+
         $data = [
             'title' => 'Author Registration',
             // 'author' => $this->authorModel->findAll()
-            'author' => $this->authorModel->paginate(10, 'author'),
+            'author' => $author->paginate(10, 'author'),
             'pager' => $this->authorModel->pager,
             'currentPage' => $currentPage
         ];
