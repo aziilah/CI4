@@ -167,13 +167,35 @@ class Comics extends BaseController
             'errors' => [
                 'required' => 'Please provide a comic {field}!',
                 'is_unique' => 'Comic {field} already registered!'
-            ]
+            ],
+            'image' => [
+                'rules' => 'max_size[image,1024]|is_image[image]|mime_in[image,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                'max_size' => 'Image size is too big!',
+                'is_image' => 'This is not an image ',
+                'mime_in' => 'This is not image format'
+                ]
+             ]
         ]
     ])) {
-        $validation = \Config\Services::validation();
         // dd($validation);
-        return redirect()->to('comics/edit/' . $this->request->getVar('slug'))->withInput()->with('validation', $validation);
+        return redirect()->to('comics/edit/' . $this->request->getVar('slug'))->withInput();
     }
+      
+    //fetch from edit.php in input tag (name) form
+      $fileImage = $this->request->getFile('image');
+
+      //check image, whether it oldImage, fetch from edit.php in input tag (name) form
+      if($fileImage->getError() == 4){
+        $nameImage = $this->request->getVar('oldImage');
+      } else {
+        //generate random name file
+        $nameImage = $fileImage->getRandomName();
+        //move image
+        $fileImage->move('img', $nameImage);
+        //delete old file image
+        unlink('img/' . $this->request->getVar('oldImage'));
+      }
 
       $slug = url_title($this->request->getVar('title'), '-', true);
         //insert to db
@@ -183,7 +205,7 @@ class Comics extends BaseController
             'slug' => $slug,
             'author' => $this->request->getVar('author'),
             'publisher' => $this->request->getVar('publisher'),
-            'image' => $this->request->getVar('image')
+            'image' => $nameImage
 
         ]);
 
