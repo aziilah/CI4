@@ -70,12 +70,34 @@ class Comics extends BaseController
                 ]
                 ],
                 
-                 'image' => 'uploaded[image]'
+                 'image' => [
+                    'rules' => 'max_size[image,1024]|is_image[image]|mime_in[image,image/jpg,image/jpeg,image/png]',
+                    'errors' => [
+                    'max_size' => 'Image size is too big!',
+                    'is_image' => 'This is not an image ',
+                    'mime_in' => 'This is not image format'
+                    ]
+                 ]
                 
         ])) {
 
             return redirect()->to('/comics/create')->withInput();
         }
+
+       //fetch image
+       $fileImage = $this->request->getFile('image');
+
+       //if image not uploaded
+       if($fileImage->getError() == 4) {
+        $nameImage = 'default.png';
+       } else {
+           //generate image file name
+           $nameImage = $fileImage->getRandomName();
+           
+           //transfer image file uploaded into folder img
+           $fileImage->move('img', $nameImage);
+
+       }
 
         $slug = url_title($this->request->getVar('title'), '-', true);
         //insert to db
@@ -84,7 +106,7 @@ class Comics extends BaseController
             'slug' => $slug,
             'author' => $this->request->getVar('author'),
             'publisher' => $this->request->getVar('publisher'),
-            'image' => $this->request->getVar('image')
+            'image' => $nameImage
 
         ]);
 
