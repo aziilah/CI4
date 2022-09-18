@@ -18,6 +18,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/comics/index">Comic</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/authors/index">Author</a>
+        </li>
       </ul>
     </div>
   </div>
