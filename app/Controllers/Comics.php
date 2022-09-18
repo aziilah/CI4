@@ -118,7 +118,17 @@ class Comics extends BaseController
     }
 
     public function delete($id) 
-    {
+    {   
+        //find image based on id
+        $comic = $this->comicModel->find($id);
+
+        //check if image file default.png
+        if($comic['image'] != 'default.png') {
+            //delete image
+            unlink('img/' . $comic['image']);
+        }
+        
+        //delete data from model
         $this->comicModel->delete($id);
 
         //make flash data in index.php
