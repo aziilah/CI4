@@ -16,7 +16,7 @@
         <p class="card-text"><b>Author: </b><?= $comic['author']; ?></p>
         <p class="card-text"><small class="text-muted"><b>Publisher: </b><?= $comic['publisher']; ?></small></p>
 
-        <a href="" class="btn btn-warning">Edit</a>
+        <a href="/comics/edit/<?= $comic['slug']; ?>" class="btn btn-warning">Edit</a>
 
         <form action="/comics/<?= $comic['id']; ?>" method="post" class="d-inline"><input type="hidden" name="_method" value="DELETE"><button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete this data?')">Delete</button></form>
         <br><br>
