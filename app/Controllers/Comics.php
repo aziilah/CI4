@@ -47,9 +47,10 @@ class Comics extends BaseController
     }
 
     public function create() {
+        
         $data = [
             'title' => 'Data Comic Form',
-            // 'comic' => $this->comicModel->getComic()
+            'validation' => \Config\Services::validation()
         ];
 
         return view ('comics/create', $data);
@@ -58,6 +59,21 @@ class Comics extends BaseController
     //handle posted data from create to insert into table
     public function save() {
         // dd($this->request->getVar('title'));
+        
+        //input validation
+        if(!$this->validate([
+            'title' => [
+                'rules' => 'required|is_unique[comic.title]',
+                'errors' => [
+                    'required' => 'Please provide a comic {field}!',
+                    'is_unique' => 'Comic {field} already registered!'
+                ]
+            ]
+        ])) {
+            $validation = \Config\Services::validation();
+            // dd($validation);
+            return redirect()->to('comics/create')->withInput()->with('validation', $validation);
+        }
 
         $slug = url_title($this->request->getVar('title'), '-', true);
         //insert to db
