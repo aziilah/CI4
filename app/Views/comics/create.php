@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-8">
             <h2 class="my-3">Data Add Comic Form</h2>
-            <form action="/comics/save" method="POST">
+            <form action="/comics/save" method="post" enctype="multipart/form-data">
                 <?= csrf_field(); ?>
   <div class="row mb-3">
     <label for="title" class="col-sm-2 col-form-label">Title</label>
@@ -31,7 +31,10 @@
   <div class="row mb-3">
     <label for="image" class="col-sm-2 col-form-label">Image</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="image" name="image" value="<?= old('image'); ?>">
+    <div class="mb-3">
+  <label for="image" class="form-label"></label>
+  <input class="form-control" type="file" id="formFile">
+</div>
     </div>
   </div>
   
