@@ -35,7 +35,7 @@
     </div>
     <div class="col-sm-8">
     <div class="custom-file">
-      <input class="custom-file-input <?= ($validation->hasError('image')) ? 'is-invalid' : ''; ?>" type="file" id="image" name="image">
+      <input class="custom-file-input <?= ($validation->hasError('image')) ? 'is-invalid' : ''; ?>" type="file" id="image" name="image" onchange="previewImg()">
       <div class="invalid-feedback">
         <?= $validation->getError('image'); ?>
       </div>
