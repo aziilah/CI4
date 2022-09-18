@@ -31,9 +31,12 @@
   <div class="row mb-3">
     <label for="image" class="col-sm-2 col-form-label">Image</label>
     <div class="col-sm-10">
-    <div class="mb-3">
-  <label for="image" class="form-label"></label>
-  <input class="form-control" type="file" id="formFile">
+    <div class="custom-file">
+      <input class="custom-file-input <?= ($validation->hasError('image')) ? 'is-invalid' : ''; ?>" type="file" id="image" name="image">
+      <div class="invalid-feedback">
+        <?= $validation->getError('image'); ?>
+      </div>
+      <label for="image" class="custom-file-label">Choose image..</label>
 </div>
     </div>
   </div>
