@@ -17,8 +17,10 @@
         <p class="card-text"><small class="text-muted"><b>Publisher: </b><?= $comic['publisher']; ?></small></p>
 
         <a href="" class="btn btn-warning">Edit</a>
-        <a href="" class="btn btn-danger">Delete</a>
+
+        <form action="/comics/<?= $comic['id']; ?>" method="post" class="d-inline"><input type="hidden" name="_method" value="DELETE"><button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete this data?')">Delete</button></form>
         <br><br>
+
         <a href="/comics/index">Return to comic register</a>
       </div>
     </div>
